@@ -107,7 +107,7 @@ cf
 cf api -h
 ```
 
-Введення опції передбачає вказівку URL в якості точки введення. Якщо URL не вказаний, команда виводить точку доступу API, яка зараз використовується.  Для керування хмарним застосунком Node-RED необхідно підключитися до https://api.eu-gb.bluemix.net, тобто ввести:
+Введення опції передбачає вказівку URL в якості точки введення. Якщо URL не вказаний, команда виводить точку доступу API, яка зараз використовується.  Для керування хмарним застосунком Node-RED необхідно підключитися до [https://api.eu-gb.bluemix.net](https://api.eu-gb.bluemix.net), тобто ввести:
 
 ```
 cf api https://api.eu-gb.bluemix.net
@@ -158,7 +158,7 @@ cf app app_name
 
 **Змінні середовища** (**Environment Variables**) - це засіб, за допомогою якого середовище виконання CF взаємодіє з розгорнутим застосунком. Змінні середовища можуть використовуватися для задавання параметрів роботи застосунків. Значення змінних середовища можна подивитися через IBM Cloud консоль.
 
-Увійдіть у консоль вашого аккаунту IBM Cloud https://cloud.ibm.com/login. Перейдіть до налаштування вашого застосунку Node-RED. Перейдіть на вкладку «Runtime» ->  «Environment variables» (рис.4) 
+Увійдіть у консоль вашого аккаунту IBM Cloud [https://cloud.ibm.com/login](https://cloud.ibm.com/login). Перейдіть до налаштування вашого застосунку Node-RED. Перейдіть на вкладку «Runtime» ->  «Environment variables» (рис.4) 
 
 ![](3_3media/4.png) 
 
@@ -262,7 +262,7 @@ cf services
 
 Користувачам, яким призначено роль менеджера або developer space, можна отримати доступ до змінної середовища VCAP_SERVICES. Однак користувачеві, якому призначено роль аудитора, не вдасться отримати доступ до VCAP_SERVICES.
 
-Перейдіть на налаштування аккаунту https://cloud.ibm.com/account. У переліку CF orgs буде один запис, який відповідає за ID вашої організації (по суті ваш поштовий ящик). Подивіться яка роль надана вашому обліковому запису і за таблицею 2 подивіться які в неї дозволи.  Зробіть клік по імені і зайдіть в налаштування org. Зайдіть на вкладку spaces і за таблицею 3 визначте ваші права на рівні space. Перегляньте зміст вкладок Users, Domains та Quotas.  
+Перейдіть на налаштування аккаунту [https://cloud.ibm.com/account](https://cloud.ibm.com/account). У переліку CF orgs буде один запис, який відповідає за ID вашої організації (по суті ваш поштовий ящик). Подивіться яка роль надана вашому обліковому запису і за таблицею 2 подивіться які в неї дозволи.  Зробіть клік по імені і зайдіть в налаштування org. Зайдіть на вкладку spaces і за таблицею 3 визначте ваші права на рівні space. Перегляньте зміст вкладок Users, Domains та Quotas.  
 
 ###### 3.3. Перегляд доступів до сервісів IAM із застосунків Cloud Foundry
 
@@ -270,7 +270,7 @@ cf services
 
 У консолі IBM Cloud перейдіть в список ресурсів Cloud Foundry Services знайдіть псевдонім ресурсу, що відповідає за з’єднання вашого CF застосунку Node-RED з сервісом Cloudant. Подивіться на значення “API key Name”, воно повинно співпадати з тим, що означено в змінній середовища VCAP_SERVICES.   
 
-Перейдіть в налаштування доступу IAM: Manage->Access (IAM) https://cloud.ibm.com/iam#/overview. Перейдіть до вкладки Service ID, потім до пункту контекстного меню Manage Service ID (рис.9).  
+Перейдіть в налаштування доступу IAM: Manage->Access (IAM) [https://cloud.ibm.com/iam#/overview](https://cloud.ibm.com/iam#/overview). Перейдіть до вкладки Service ID, потім до пункту контекстного меню Manage Service ID (рис.9).  
 
 ![](3_3media/9.png) 
 
@@ -337,7 +337,7 @@ cf buildpacks
 
 рис.12 
 
-Детально процедура описано за [цим посиланням](https://docs.cloudfoundry.org/concepts/how-applications-are-staged.html). 
+Детально процедура описана за [цим посиланням](https://docs.cloudfoundry.org/concepts/how-applications-are-staged.html). 
 
 На кожній стадії застосунок і служби можуть формувати повідомлення в журналі. Для перегляду журналу скористуйтеся командою:
 
@@ -357,15 +357,15 @@ OUT Exit status 1 (out of memory)
 
 ###### 4.3. Завантаження коду Node-RED Starter в локальну папку 
 
-Кнопка створення «Node-RED IBM Cloud Starter Application», якою Ви користувалися для створення застосунку в частині 3.1 лабораторної роботи містить таке посилання 
+Кнопка створення «Node-RED IBM Cloud Starter Application», якою Ви користувалися для створення застосунку в частині 3.1 лабораторної роботи містить таке посилання
 
-https://bluemix.net/deploy?repository=https://github.com/knolleary/node-red-bluemix-starter.git
+[https://bluemix.net/deploy?repository=https://github.com/knolleary/node-red-bluemix-starter.git](https://bluemix.net/deploy?repository=https://github.com/knolleary/node-red-bluemix-starter.git) 
 
 Це посилання розгортає застосунок з сирцевого коду, що розміщується на github. Коли Ви натискаєте кнопку, то IBM Cloud вибирає код з цього сховища і робить його розгортання. При цьому автоматично створюється екземпляр служби Cloudant, який прив’язується застосунку. 
 
 Код застосунку можна завантажити з github і залити з використанням команд CLI. 
 
-Завантажте та розархівуйте з github код застосунку **bluemix-starter** https://github.com/knolleary/node-red-bluemix-starter (“clone or download” -> “download zip”). Подивіться на структуру каталогу проекту. 
+Завантажте та розархівуйте з github код застосунку **[bluemix-starter](https://github.com/knolleary/node-red-bluemix-starter)**  (“clone or download” -> “download zip”). Подивіться на структуру каталогу проекту. 
 
 Зокрема в файлі «\.bluemix\pipeline.yml» вказана стадійність розсортування. 
 

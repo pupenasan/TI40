@@ -12,15 +12,10 @@
 
 1. створити власний IBM Cloud Account з безкоштовною ліцензією ;
 2. створити сервіси: застосунок Node-RED, СУБД Cloudant з використанням стартового набору  “Node-RED starter”; 
-
 3. використати  хмарний застосунок Node-RED разом з СУБД Cloudant для:
-
 - збору даних з Edge, використовуючи один із протоколів, наприклад WEB Socket 
-
 - збереження даних в базі даних
-
 - відображення даних у вигляді тренду  
-
 
 **Увага, зовнішній вигляд інтерфейсу налаштування IBM Cloud постійно змінюється!** 
 
@@ -36,7 +31,7 @@
 
 ###### 1.1.  Реєстрація аккаунту
 
-Відкрийте в браузері сторінку реєстрації  IBM Cloud [https://](https://cloud.ibm.com/login)[cloud.ibm.com/registration/](https://cloud.ibm.com/registration/) (рис.1)
+Відкрийте в браузері сторінку реєстрації  IBM Cloud [https://cloud.ibm.com/registration](https://cloud.ibm.com/registration) (рис.1)
 
 ![](3_1media/1.png)                               
 
@@ -70,7 +65,7 @@
 
 ###### 1.3. Вхід в аккаунт, ознайомлення з інтерфейсом консолі
 
-Скориставшись [посиланням]([https://](https://cloud.ibm.com/login)[cloud.ibm.com/login](https://cloud.ibm.com/login))  зайдіть в свій аккаунт.
+Скориставшись [посиланням](https://cloud.ibm.com/login) зайдіть в свій аккаунт.
 
 Зовнішній графічний інтерфейс сторінки для адміністрування ресурсами IBM® Cloud називається **консоллю** (IBM® Cloud console). За допомогою консолі можна створювати аккаунти (облікові записи), входити в систему, доступати до документації, доступатися до каталогу, переглядати інформацію про ціни, запитувати підтримку, або перевіряти стан компонентів IBM Cloud. 
 
@@ -156,7 +151,7 @@
 
 рис.12.
 
-Перейдіть на перелік Ваших ресурсів (https://cloud.ibm.com/resources ). Почекайте кілька хвилин (десь 3-5), періодично оновлюйте сторінку , поки створиться і запуститься Ваш Cloud Foundry apps (рис.13), тобто перейде в стан “Started”.  
+Перейдіть на [перелік Ваших ресурсів](https://cloud.ibm.com/resources) . Почекайте кілька хвилин (десь 3-5), періодично оновлюйте сторінку , поки створиться і запуститься Ваш Cloud Foundry apps (рис.13), тобто перейде в стан “Started”.  
 
 ![](3_1media/13.png) 
 
@@ -173,7 +168,7 @@
 
 - Continuous Delivery – DevOps сервіси для автоматичного розгортання застосунків
 
-Крім того, автоматично створюється зв'язок між цими сервісами, що дозволяє вже використовувати СУБД Cloudant в додатках Node-RED. У даному пункті необхідно подивитися стан цих сервісів. Нагадаємо, що перелік всіх доступних сервісів можна знайти через список ресурсів «Меню навігації» -> «Resource List» (https://cloud.ibm.com/resources).
+Крім того, автоматично створюється зв'язок між цими сервісами, що дозволяє вже використовувати СУБД Cloudant в додатках Node-RED. У даному пункті необхідно подивитися стан цих сервісів. Нагадаємо, що перелік всіх доступних сервісів можна знайти через список ресурсів «Меню навігації» -> «Resource List» ([https://cloud.ibm.com/resources](https://cloud.ibm.com/resources)).
 
 Відкрийте вікно списку ресурсів. У Вас повинно бути доступно 6 ресурсів.  Відкрийте кожний ресурс в окремій вкладці браузеру. Усі сервіси мають вкладку Manage, через який ними можна керувати, окрім ресурсу-псевдоніму Cloudant і App. Детальніше пояснення цих ресурсів буде згодом. Наразі розглянемо тільки ресурс  Cloudant  і Node-RED  
 
@@ -321,7 +316,7 @@
 
 У даному пункті для запису отриманих даних з пристрою Edge використовуватимуться вузли Cloudant.  
 
-Ознайомтеся з роботою вузлів Cloudant [довідника](https://drive.google.com/open?id=1tbhv1j-tiUGpIlAO4kWlInCRXJh0ZIqf) Node-RED.
+Ознайомтеся з роботою вузлів Cloudant [довідника](https://pupenasan.github.io/NodeREDGuidUKR/storage_cloudant/) Node-RED.
 
 Змініть програму у хмарному Node-RED, як це показано на рис.25. 
 
@@ -457,8 +452,6 @@ return msg;
 
 ```
 
- 
-
 ![](3_1media/34.png)  
 
 рис.34
@@ -475,9 +468,9 @@ return msg;
 
 ## Додаток 1. Node-RED IBM Cloud Starter Application  
 
-https://github.com/ibmets/node-red-bluemix-starter
+[https://github.com/ibmets/node-red-bluemix-starter](https://github.com/ibmets/node-red-bluemix-starter)
 
-https://github.com/knolleary/node-red-bluemix-starter 
+[https://github.com/knolleary/node-red-bluemix-starter](https://github.com/knolleary/node-red-bluemix-starter ) 
 
 ### Node-RED IBM Cloud Starter Application
 

@@ -65,7 +65,7 @@
 
 ## 2. Створення, наповнення та адміністрування IBM Cloud Object Storage  
 
-[IBM Cloud Object Storage](https://console.bluemix.net/docs/services/cloud-object-storage/about-cos.html#about-ibm-cloud-object-storage) (надалі, **COS**) - це хмарне сховище даних, яке за своїми функціями подібне до файлового серверу. [Ключові терміни](https://console.bluemix.net/docs/services/cloud-object-storage/basics/glossary.html#key-terms).
+[IBM Cloud Object Storage](https://console.bluemix.net/docs/services/cloud-object-storage/about-cos.html#about-ibm-cloud-object-storage) (надалі, **COS**) - це хмарне сховище даних, яке за своїми функціями подібне до файлового серверу). [Глосарій термінів](https://cloud.ibm.com/docs/overview?topic=overview-glossary).
 
 ###### 2.1. Створення  IBM Cloud Object Storage 
 
@@ -77,7 +77,9 @@
 
 ​      У вікні налаштувань створення сервісу (рис.6) вкажіть ServiceName, відповідно до вашого прізвища та імені, наприклад для Іваненко Івана згідно та шаблону:
 
-*IvanenkoIvanStorageCOS*
+```
+IvanenkoIvanStorageCOS
+```
 
 ![](3_2media/6.png) 
 
@@ -93,7 +95,9 @@
 
 Натисніть кнопку “Create Bucket” для створення нового  Bucket (рис.8). Вкажіть Bucket Name, відповідно до вашого прізвища та імені, наприклад для Іваненко Івана згідно та шаблону:
 
-*ivanenko-ivan-files*
+```
+ivanenko-ivan-files
+```
 
 ![](3_2media/8.png) 
 
@@ -107,7 +111,7 @@
 
 ###### 2.3. Добавлення файлів в Bucket.
 
-За допомогою кнопки Upload -> Files (у спливаючому вікні виберіть Standard Upload), або шляхом перетягування, добавте в новостворений Bucket якийсь файл *.jpg (наприклад своє фото). Після завантаження у переліку буде показаний завантажений файл (рис.10).
+За допомогою кнопки `Upload -> Files` (у спливаючому вікні виберіть Standard Upload), або шляхом перетягування, добавте в новостворений Bucket якийсь файл *.jpg (наприклад своє фото). Після завантаження у переліку буде показаний завантажений файл (рис.10).
 
 ![](3_2media/10.png) 
 
@@ -117,7 +121,7 @@
 
 Об’єктами COS можна користуватися як з сервісів IBM Cloud, так і поза ними. Для того, щоб мати можливість користуватися цими об’єктами поза межами IBM Cloud (через HTTP API) необхідно налаштувати доступ. Нижче наведені деякі поняття, які необхідні для розуміння. 
 
-[Service credential](https://console.bluemix.net/docs/services/cloud-object-storage/basics/glossary.html#service-credential) (**облікові дані**) - це сукупність важливої інформації, яку розробники використовують для підключення до екземпляра об'єкта зберігання даних. 
+[Service credential](https://cloud.ibm.com/docs/overview?topic=overview-glossary#x8878996) (**облікові дані**) - це сукупність важливої інформації, яку розробники використовують для підключення до екземпляра об'єкта зберігання даних. 
 
 [Resource instance ID / Service instance ID](https://console.bluemix.net/docs/services/cloud-object-storage/basics/glossary.html#resource-instance-id-service-instance-id) - коли створюється або надається екземпляр сервісу, йому присвоюється унікальний ідентифікатор у вигляді імені ресурсу хмари (**CRN** - Cloud Resource Name).
 
@@ -187,7 +191,7 @@
 
 ###### 3.3. Отримання переліку об’єктів з COS 
 
-Ознайомтеся з принципами роботи вузлів з «cos get» та «cos query» з  [довідника Node-RED](https://drive.google.com/open?id=1tbhv1j-tiUGpIlAO4kWlInCRXJh0ZIqf). Створіть новий потік, як це показано на рис.17. Зробіть розгортання проекту. 
+Ознайомтеся з принципами роботи вузлів з «cos get» та «cos query» з  [довідника Node-RED](https://pupenasan.github.io/NodeREDGuidUKR/storage_cos/). Створіть новий потік, як це показано на рис.17. Зробіть розгортання проекту. 
 
 ![](3_2media/17.png)  
 
@@ -203,7 +207,9 @@
 
 У даному пункті лабораторної роботи необхідно забезпечити ініціювання зчитування об’єктів через веб-запит. Запит повинен проводитися за шаблоном
 
-host/files/*file_name*
+```
+host/files/file_name
+```
 
  де host вказує на розміщення веб ресурсу Node-RED, а file_name – ім’я файлу, який необхідно отримати. У випадку позитивної відповіді необхідно вивести «Об’єкт отримано», у випадку негативної – «Об’єкт не вдалося отримати».
 
@@ -221,7 +227,9 @@ host/files/*file_name*
 
 Видаліть з програми вузла «Відповідь» рядок 
 
+```
 msg.payload = "Об'єкт отримано";
+```
 
 Зробіть розгортання проекту. Знову задайте в рядку URL файл, який необхідно вибрати з COS. Замість повідомлення про успішне отримання файлу, він буде зберігатися на локальному ПК.
 
