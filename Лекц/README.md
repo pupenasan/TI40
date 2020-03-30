@@ -1,5 +1,7 @@
 ![](media/1.png)
 
+Автор і лектор: Олександр Пупена 
+
 # Технології індустрії 4.0: конспект лекцій
 
 1. [Основи Інтернету Речей](intro.md)
@@ -8,7 +10,7 @@
 4. [Хмарні сервіси в АСКТП.](cloud.md)
 5. [Промисловий інтернет речей IIoT](IIoT.md).
 6. [Хмарні рішення для IoT та IIoT](cloudiot.md).
-7. OPC UA.
+7. [OPC UA](OPC_UA.md).
 8. Використання Git та GitHub (посилання на інший курс).
    1. [Системи керування версіями: Git, GitHub](https://pupenasan.github.io/ProgIngContrSystems/Лекц/Git.html)
    2. [Сумісна робота з віддаленими сховищами в GitHub](https://pupenasan.github.io/ProgIngContrSystems/Лекц/GitHub.html)
