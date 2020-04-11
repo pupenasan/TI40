@@ -430,4 +430,4 @@ https://ytaf20.internetofthings.ibmcloud.com/api/v0002/bulk/devices
 
   
 
- 
+ [IBM Cloud Docs Solution Tutorials ->Gather, visualize, analyze and detect anomalies in IoT data](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-gather-visualize-analyze-iot-data#historical_data_connector)
