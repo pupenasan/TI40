@@ -227,6 +227,8 @@ curl -X GET "https://f4oj8s.internetofthings.ibmcloud.com/api/v0002/s2s/services
   }
 ```
 
+
+
 GET [/s2s/services/{serviceUuid}](https://f4oj8s.internetofthings.ibmcloud.com/docs/v0002/historian-connector.html#/Services/get_s2s_services__serviceUuid_) Get the details of a service
 
 PUT [/s2s/services/{serviceUuid}](https://f4oj8s.internetofthings.ibmcloud.com/docs/v0002/historian-connector.html#/Services/put_s2s_services__serviceUuid_) Update a service
@@ -249,7 +251,7 @@ DELETE [/s2s/services/{serviceUuid}](https://f4oj8s.internetofthings.ibmcloud.co
 Конектор Historian включає в себе всю конфігурацію, необхідну для запису в цільовий сервіс. Це включає:
 
 - Destinations (Місце призначення) 
-- Forwarding Rules (Правила пересиланян)
+- Forwarding Rules (Правила пересилання)
 
 Місце призначення використовується для налаштування конкретного місця, в яке слід записувати на цільовому сервісі. Наприклад, якщо цільовим сервісом є Event  Streams (Потоки подій), місце призначення може використовуватися для налаштування окремої теми для запису даних. Правила пересилання  дозволяють вам вказати, на які призначення записуються конкретні події чи стан. Кінцева точка **Historicconnectors** повертає список усіх конекторів Historian , які були налаштовані для організації на платформі Watson IoT.
 
