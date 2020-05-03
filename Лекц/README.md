@@ -14,7 +14,7 @@
 8. Використання Git та GitHub (посилання на інший курс).
    1. [Системи керування версіями: Git, GitHub](https://pupenasan.github.io/ProgIngContrSystems/Лекц/Git.html)
    2. [Сумісна робота з віддаленими сховищами в GitHub](https://pupenasan.github.io/ProgIngContrSystems/Лекц/GitHub.html)
-9. Основи кібербезпеки.
+9. [Автентифікація у веб-застосунках](cloudauth.md).
 10. Модель IIC (Industrial Internet of Things).
 11. Модель RAMI4.0.
 12. Основи аналізу даних та машинного навчання.
