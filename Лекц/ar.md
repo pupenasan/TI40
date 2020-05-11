@@ -1,6 +1,6 @@
 # Доповнена реальність
 
-[Augmented Operator Advisor від ШЕ](https://secureidentity.schneider-electric.com/identity/setup/secur/RemoteAccessAuthorizationPage.apexp?source=CAAAAXE6b1euME8wMUgwMDAwMDA0Qzk1AAAA3r-8VH9cbnxcSEuvvEnZ7pP8GXKSNOJIKPTkbF1Cb6wpD62RZFnxa6ENJ5k7vxl5CkWu1bubkgtnI5GqB8DooOA8oH8R1a2lfjbhHmuN3AijsxNTrXTFlbRVRx0AT23jeQf5SNKkIFWP4_x_cwWaXafuFdQFR_7BUAwpWLH3MRkHCam22ZihjcNUhWFXThGS4lJ0og0naxYZwnhKXu6eM1Sy0rOklDCOcMo5gmr61nteoBvz-5ZpMILtSi7XGRJSxDPr079joWIvYTZPi-nSYULxY6ZhAoq15bIZH35Q-SxafAClhnOEJOqgOr9cHLj4HXk8ERvx8P5eSpNZ7SWIEXT14hjBN3tCHU5NaGBo181tmduxCIe1OORAVPFZqI4bMh-_iVT0PXWz-NlmqN1dIoAZplW6X3b5T7l07b6YDqgZ6IFoUPQD50GzRg3pZi3_93aXig-kSCujcccmzjVicfFu_AMuepQWrOWX7KMDbQID1BPET7A_ncJ27ee-b0YZYKKA2INgQXfoJqNXT0vMfoXXtBP53hgGSCZuhaXbaZbUvoXtqhoX99nSjZa9tf9-K3EnP5AMzcZM7qYPA3naaKziYlxNRC1p5KebY-KgvxhL6RGF-TfkPnVt71t309rEcus0OBVYEooVPGuSbLBZ7gp-Ee6QX_qIF7-w7SahcnQjE16vpMVYzQ73gSws4_GahG7Iug270aIB-2wiS9lqxyYsr0aiwKpbj3FZp7SWEhyw&fbclid=IwAR2catLnTRF7YmyTAvkd_SHX1ThjYPhB0TPuaOH5620IGpZHxP6B-RXw2Bg)
+[Augmented Operator Advisor від ШЕ](https://app.schneider-electric.com/ecostruxure-augmented-operator-advisor/)
 
 [Приклади відео з доповненою реальністю від Шнейдер Електрик](https://schneider-electric.app.box.com/s/p7zvlaxg2pill62wgk4ci9u45aop3vxb)
 
@@ -8,3 +8,4 @@
 
 [Презентації вебінару від ШЕ](https://schneider-electric.app.box.com/s/tks378c19w5mmgtftmkglpoxww3s9fjn)
 
+https://www.se.com/us/en/product-range-download/64507-ecostruxure-augmented-operator-advisor/#/software-firmware-tab

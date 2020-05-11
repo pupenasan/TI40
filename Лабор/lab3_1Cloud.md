@@ -306,9 +306,7 @@
 
 ###### 4.3. Створення БД    
 
-На вкладці Databases натисніть кнопку «Create Database». Назвіть цю БД «db1».  
-
- 
+На вкладці Databases натисніть кнопку «Create Database». Назвіть цю БД «db1».  У виборі типу вкажіть "Non-partitioned". 
 
  ![](3_1media/24.png)
 

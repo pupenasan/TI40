@@ -217,3 +217,14 @@ https://www.digitalocean.com/community/tutorials/oauth-2-ru
 https://docs.oracle.com/cd/E74890_01/books/RestAPI/RestAPI_Overview13.html
 
 
+
+Для проб
+
+https://swapi.dev/
+
+https://jigsaw.w3.org/HTTP
+
+https://demo.c2id.com/oidc-client/
+
+https://developers.google.com/oauthplayground/
+
