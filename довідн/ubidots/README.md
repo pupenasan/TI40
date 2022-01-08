@@ -1,1 +1,0 @@
-https://ubidots.com/manufacturing/
