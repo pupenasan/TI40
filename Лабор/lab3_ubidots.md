@@ -1,18 +1,37 @@
 # Лабораторна робота №4. Робота з платформою Ubidots 
 
-https://ubidots.com/manufacturing/
+Для виконання завдань лабораторного заняття слід підготувати дані для надсилання. Як об'єкт контролю буде використовуватися імітаційна модель кондиціювання, реалізована на OPC UA сервері. 
 
-Ограничение бесплатной лицензии описано [тут](https://help.ubidots.com/en/articles/639806-what-is-the-difference-between-ubidots-and-ubidots-stem)
+### 4.0. Інсталяція та перевірка тестового OPC UA сервера та клієнта
 
-### 4.1.Регистрация на платформе Ubidots
+Даний пункт необхідно виконувати, якщо не виконувалась лабораторна робота по OPC.
 
-- [ ] Зайдите на сайт <https://ubidots.com/manufacturing/>
-- [ ] Нажмите на "Start a Free Treal" или перейдите [по ссылке](https://industrial.ubidots.com/accounts/signup_industrial/) 
-- [ ] Нажмите "Take Me To Ubidots Stem"
-- [ ] Укажите регистрационные данные и "Sign Up Free".
-- [ ] Помощник сделает демонстрационное устройство   
+- [ ] Інсталюйте тестовий [OPC UA C++ Demo Server](https://www.unified-automation.com/downloads/opc-ua-servers.html) , якщо ще не інстальовано
+- [ ] Інсталюйте тестовий OPC UA Client [UaExpert](https://www.unified-automation.com/downloads/opc-ua-clients.html), якщо ще не інстальовано
+- [ ] Запустіть OPC UA C++ Demo Server та OPC UA Client, з'єднайте їх та перевірте взаємодію
+- [ ] Інсталюйте модуль node-red-contrib-opcua, якщо він ще не інстальовано
 
-### 4.2.Просмотр демонстрационного устройства
+### 4.0. Імпорт та перевірка роботи потоку для збору даних
+
+- [ ] на локальному ПК запустіть Node-RED
+- [ ] створіть новий проект
+- [ ] скачайте [файл експорту потока](https://drive.google.com/file/d/1sG11-TY4EOX3Sk9N1mJyQCGGNj01NExx/view) збору даних та імпортуйте
+
+![](media0/1.png)
+
+- [ ] зробіть розгортання потоку, переглядаючи та змінюючи значення змінних за допомогою OPC UA Client UaExpert перевірте, що у глобальному контексті "RTDB" дані оновлюються
+- [ ] перегляньте та проаналізуйте вміст потоку
+
+### 4.1. Реєстрація на платформі Ubidots
+
+Обмеження безкоштовної ліцензії описано [тут](https://help.ubidots.com/en/articles/639806-what-is-the-difference-between-ubidots-and-ubidots-stem)
+
+- [ ] Зайдіть на сайт  <https://ubidots.com/manufacturing/>
+- [ ] Натисніть "Sing up" або перейдіть [за посиланням](https://industrial.ubidots.com/accounts/signup_industrial/)
+- [ ] Натисніть "Take Me To Ubidots Stem"
+- [ ] Вкажіть реєстраційні дані та "Sign Up For Free"
+
+### 4.2.Створення та налаштування нового пристрою
 
 - [ ] Зайдите в перечень устройств, там по умолчанию должно быть устройство "Demo", выберите его 
 
