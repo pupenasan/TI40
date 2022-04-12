@@ -11,8 +11,8 @@
 
 **Варіант лабораторних робіт 2022 року**
 
-- Лаб 4. [Робота з платформою Ubidots](lab3_ubidots.md)
-- Лаб 5. [Робота з OPC UA](lab_opcua.md)
+- Лаб 4. [Робота з OPC UA](lab_opcua.md)
+- Лаб 5. [Робота з платформою Ubidots](lab3_ubidots.md)
 - Лаб 6.1. [Influx DB. Збір даних та основи роботи з вибіркою даних](lab_influx1.md) 
 - Лаб 6.2. [Influx DB. Робота з запитами на мові flux](lab_influx2.md).
 - Лаб 7.1. [Grafana. Основи роботи з Grafana. Налаштування джерел даних.](lab_grafana1.md).
