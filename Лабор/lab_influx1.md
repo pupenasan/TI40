@@ -50,13 +50,16 @@ Read/Write token – надає доступ для читання, запису
 ![](6_1media/2.gif) 
 
 ### 4. Налаштування запису даних з OPC UA сервера в influxdb
+
+У цьому пункті ви спробуєте два способи збору та запису даних в InfluxDB. Перший спосіб (4.1) передбачає збір та запис даних з використанням Node-RED та спеціальних вузлів бібліотеки. Другий спосіб (4.2) - використовуючи службу Telegraf. 
+
 #### 4.1. Запис даних за допомогою Node red
 
 - [ ] Запустіть тестовий сервер UaCPPServer, з яким ви працювали в Лабораторній роботі №4 – [Робота з OPC UA](lab_opcua.md) 
 - [ ] Запустіть Node-RED. Встановіть модуль `node-red-contrib-stackhero-influxdb-v2`.
-- [ ] Продовжуйте працювати в проекті Node-Red з лабораторної роботи №4 – [Робота з OPC UA](lab_opcua.md) . Імпортуйте код нового потоку:
+- [ ] Можете продовжити працювати в проекті Node-Red з лабораторної роботи №4 [Робота з OPC UA](lab_opcua.md) або створити новий проект. Імпортуйте код нового потоку:
 ```json
-[{"id":"760f23939087cb96","type":"tab","label":"OPC UA to influxdb","disabled":false,"info":"","env":[]},{"id":"ab472f9b460178a2","type":"function","z":"760f23939087cb96","name":"multiplesubscribe","func":"msg.payload=10000;\nfor(i=1;i<11;i++){\n   msg.topic=`ns=3;s=AirConditioner_${i}.Temperature`;\n   node.send(msg);\n    }\n","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":290,"y":80,"wires":[["a21fad02e87d5aa8"]]},{"id":"c8770202d16a3012","type":"inject","z":"760f23939087cb96","name":"","props":[{"p":"payload"},{"p":"topic","vt":"str"}],"repeat":"","crontab":"","once":true,"onceDelay":0.1,"topic":"","payloadType":"date","x":110,"y":80,"wires":[["ab472f9b460178a2"]]},{"id":"c79ed1b84a742571","type":"debug","z":"760f23939087cb96","name":"","active":false,"tosidebar":true,"console":false,"tostatus":false,"complete":"true","targetType":"full","statusVal":"","statusType":"auto","x":1090,"y":200,"wires":[]},{"id":"a21fad02e87d5aa8","type":"OpcUa-Client","z":"760f23939087cb96","endpoint":"501a96153c7c8d57","action":"subscribe","deadbandtype":"a","deadbandvalue":1,"time":"10","timeUnit":"s","certificate":"n","localfile":"","localkeyfile":"","securitymode":"None","securitypolicy":"None","folderName4PKI":"","name":"","x":500,"y":80,"wires":[["1ef5bdfa8f62c7a1"]]},{"id":"d3727b6cd9633b8f","type":"Stackhero-InfluxDB-v2-write","z":"760f23939087cb96","server":"","name":"InfluxDBwrite","x":1010,"y":80,"wires":[["c79ed1b84a742571"]]},{"id":"24c0e70e64d3ab41","type":"join","z":"760f23939087cb96","name":"","mode":"custom","build":"array","property":"payload","propertyType":"msg","key":"topic","joiner":"\\n","joinerType":"str","accumulate":false,"timeout":"","count":"10","reduceRight":false,"reduceExp":"","reduceInit":"","reduceInitType":"num","reduceFixup":"","x":735,"y":80,"wires":[["769db09ab15b6d24"]],"l":false},{"id":"1ef5bdfa8f62c7a1","type":"switch","z":"760f23939087cb96","name":"","property":"topic","propertyType":"msg","rules":[{"t":"cont","v":"ns=3;s=AirConditioner","vt":"str"}],"checkall":"true","repair":false,"outputs":1,"x":615,"y":80,"wires":[["53fdf054dc0c9e9f"]],"l":false},{"id":"53fdf054dc0c9e9f","type":"function","z":"760f23939087cb96","name":"","func":"let str=\"\";\nlet obj={};\nstr=msg.topic.replace(\"ns=3;s=\",\"\");\nobj.device=str.replace(\".Temperature\",\"\");\nobj.fields={Temperature:msg.payload};\nobj.timestamp=msg.serverTimestamp;\nobj.statuscode=msg.statusCode.value;\nmsg={};\nmsg.payload=obj;\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":675,"y":80,"wires":[["24c0e70e64d3ab41"]],"l":false},{"id":"769db09ab15b6d24","type":"function","z":"760f23939087cb96","name":"msgtoinflux","func":"let datastore=[];\nclass sample {\n  constructor(payload) {\n    this.data={\n        measurement:'Building',\n        tags: {\n            device: payload.device,\n        },\n        fields: payload.fields,\n        timestamp: new Date(payload.timestamp).getTime()\n    }\n  }\n}\nfor (let i=0; i<msg.payload.length;i++){\n    dataobj=new sample(msg.payload[i]);\n    datastore.push(dataobj.data);\n}\nmsg.payload = {\n    bucket:'firstbucket',\n    precision: 'ms',\n    data:datastore,\n};\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":850,"y":80,"wires":[["d3727b6cd9633b8f"]]},{"id":"501a96153c7c8d57","type":"OpcUa-Endpoint","endpoint":"","secpol":"None","secmode":"None","login":false,"credentials":{}}]
+[{"id":"760f23939087cb96","type":"tab","label":"OPC UA to influxdb","disabled":false,"info":"","env":[]},{"id":"ab472f9b460178a2","type":"function","z":"760f23939087cb96","name":"multiplesubscribe","func":"msg.payload=10000;\nfor(i=1;i<11;i++){\n   msg.topic=`ns=3;s=AirConditioner_${i}.Temperature`;\n   node.send(msg);\n    }\n","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":290,"y":80,"wires":[["a21fad02e87d5aa8"]]},{"id":"c8770202d16a3012","type":"inject","z":"760f23939087cb96","name":"","props":[{"p":"payload"},{"p":"topic","vt":"str"}],"repeat":"","crontab":"","once":true,"onceDelay":0.1,"topic":"","payloadType":"date","x":110,"y":80,"wires":[["ab472f9b460178a2"]]},{"id":"c79ed1b84a742571","type":"debug","z":"760f23939087cb96","name":"","active":false,"tosidebar":true,"console":false,"tostatus":false,"complete":"true","targetType":"full","statusVal":"","statusType":"auto","x":1090,"y":200,"wires":[]},{"id":"a21fad02e87d5aa8","type":"OpcUa-Client","z":"760f23939087cb96","endpoint":"501a96153c7c8d57","action":"subscribe","deadbandtype":"a","deadbandvalue":1,"time":"10","timeUnit":"s","certificate":"n","localfile":"","localkeyfile":"","securitymode":"None","securitypolicy":"None","folderName4PKI":"","name":"","x":500,"y":80,"wires":[["1ef5bdfa8f62c7a1"]]},{"id":"d3727b6cd9633b8f","type":"Stackhero-InfluxDB-v2-write","z":"760f23939087cb96","server":"","name":"InfluxDBwrite","x":1010,"y":80,"wires":[["c79ed1b84a742571"]]},{"id":"24c0e70e64d3ab41","type":"join","z":"760f23939087cb96","name":"","mode":"custom","build":"array","property":"payload","propertyType":"msg","key":"topic","joiner":"\\n","joinerType":"str","accumulate":false,"timeout":"","count":"10","reduceRight":false,"reduceExp":"","reduceInit":"","reduceInitType":"num","reduceFixup":"","x":735,"y":80,"wires":[["769db09ab15b6d24"]],"l":false},{"id":"1ef5bdfa8f62c7a1","type":"switch","z":"760f23939087cb96","name":"","property":"topic","propertyType":"msg","rules":[{"t":"cont","v":"ns=3;s=AirConditioner","vt":"str"}],"checkall":"true","repair":false,"outputs":1,"x":615,"y":80,"wires":[["53fdf054dc0c9e9f"]],"l":false},{"id":"53fdf054dc0c9e9f","type":"function","z":"760f23939087cb96","name":"","func":"let str=\"\";\nlet obj={};\nstr=msg.topic.replace(\"ns=3;s=\",\"\");\nobj.device=str.replace(\".Temperature\",\"\");\nobj.fields={Temperature:msg.payload};\nobj.timestamp=msg.serverTimestamp;\nmsg={};\nmsg.payload=obj;\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":675,"y":80,"wires":[["24c0e70e64d3ab41"]],"l":false},{"id":"769db09ab15b6d24","type":"function","z":"760f23939087cb96","name":"msgtoinflux","func":"let datastore=[];\nclass sample {\n  constructor(payload) {\n    this.data={\n        measurement:'Building',\n        tags: {\n            device: payload.device,\n        },\n        fields: payload.fields,\n        timestamp: new Date(payload.timestamp).getTime()\n    }\n  }\n}\nfor (let i=0; i<msg.payload.length;i++){\n    dataobj=new sample(msg.payload[i]);\n    datastore.push(dataobj.data);\n}\nmsg.payload = {\n    bucket:'firstbucket',\n    precision: 'ms',\n    data:datastore,\n};\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":850,"y":80,"wires":[["d3727b6cd9633b8f"]]},{"id":"501a96153c7c8d57","type":"OpcUa-Endpoint","endpoint":"","secpol":"None","secmode":"None","login":false,"credentials":{}}]
 ```
 
 
@@ -85,10 +88,10 @@ Read/Write token – надає доступ для читання, запису
 
 
 #### 4.2. Запис даних за допомогою Telegraf
-Telegraf – серверний агент, який збирає та надсилає метрики з різних джерел даних (баз даних, систем та IoT). Перед тим як збирати дані з OPC UA server за допомогою Telegraf, необхідно його інсталювати на машину, на якій ви запускаєте UaCPPServer. Для цього завантажте Telegraf. Якщо ви працюєте з операційною системою  Windows, тоді запустіть Windows Power Shell від **імені адміністратора** та виконайте команди: 
+Telegraf – серверний агент, який збирає та надсилає метрики з різних джерел даних (баз даних, систем та IoT). Перед тим як збирати дані з OPC UA server за допомогою Telegraf, необхідно його інсталювати на машину, на якій ви запускаєте UaCPPServer. Для цього завантажте Telegraf. Якщо ви працюєте з 64-розрядною операційною системою  Windows, тоді запустіть Windows Power Shell від **імені адміністратора** та виконайте команди: 
 
 ```powershell
-wget https://dl.influxdata.com/telegraf/releases/telegraf-1.22.1_windows_amd64.zip -UseBasicParsing -OutFile telegraf-1.22.1_windows_amd64.zip
+wget http://dl.influxdata.com/telegraf/releases/telegraf-1.22.1_windows_amd64.zip -UseBasicParsing -OutFile telegraf-1.22.1_windows_amd64.zip
 ```
 
 ```powershell
@@ -112,8 +115,22 @@ Expand-Archive .\telegraf-1.22.1_windows_amd64.zip -DestinationPath 'C:\Program 
 ![](6_1media/6.gif) 
 
 - [ ] Дайте назву конфігурації, наприклад, `OPC UA server`.
+- [ ] Сконфігуруйте плагін, прибираючи потрібні параметри (прибрати "#") та змінюючи їх значення. Зокрема змініть конфігурацію вхідного плагіну (`inputs`) як це показано на рисунку нижче. Враховуйте, що значенню параметра `endpoint` відповідає URL OPC UA сервера. Значення параметру Nodes скопіюйте звідси: 
 
-- [ ] Плагін слід належним чином конфігурувати. Потрібні параметри необхідно розкоментувати (прибрати "#") та означити. Змініть конфігурацію вхідного плагіну наступним чином як на рисунку, враховуйте, що значенню параметра `endpoint` відповідає URL OPC UA сервера. 
+```json
+[
+   {name="Humidity", tags=[["device", "AirConditioner_1" ]], identifier="AirConditioner_1.Humidity"},
+   {name="Humidity", tags=[["device", "AirConditioner_2" ]], identifier="AirConditioner_2.Humidity"},
+   {name="Humidity", tags=[["device", "AirConditioner_3" ]], identifier="AirConditioner_3.Humidity"},
+   {name="Humidity", tags=[["device", "AirConditioner_4" ]], identifier="AirConditioner_4.Humidity"},
+   {name="Humidity", tags=[["device", "AirConditioner_5" ]], identifier="AirConditioner_5.Humidity"},
+   {name="Humidity", tags=[["device", "AirConditioner_6" ]], identifier="AirConditioner_6.Humidity"},
+   {name="Humidity", tags=[["device", "AirConditioner_7" ]], identifier="AirConditioner_7.Humidity"},
+   {name="Humidity", tags=[["device", "AirConditioner_8" ]], identifier="AirConditioner_8.Humidity"},
+   {name="Humidity", tags=[["device", "AirConditioner_9" ]], identifier="AirConditioner_9.Humidity"},
+   {name="Humidity", tags=[["device", "AirConditioner_10" ]], identifier="AirConditioner_10.Humidity"},                        
+  ]
+```
 
 ![](6_1media/7.png) 
 ![](6_1media/8.png) 
@@ -123,12 +140,12 @@ Expand-Archive .\telegraf-1.22.1_windows_amd64.zip -DestinationPath 'C:\Program 
 
 ![](6_1media/9.png) 
 
-- [ ] З пункту "Configure your API Token" (вікно Test your configuration) скопіюйте згенерований токен для доступу до конфігураційного файлу та бакету.
+- [ ] З пункту "Configure your API Token" (вікно Test your configuration) скопіюйте згенерований токен в якийсь текстовий файл для подальшого налаштування доступу до конфігураційного файлу та бакету. Вікно конфігурації також можна буде відкривати пізніше через пункт "Setup Instruction" конкретного налаштування Telegraf.  
 
 
 ![](6_1media/7.gif) 
 
-- [ ] Створіть змінну середовища `INFLUX_TOKEN`, вона буде зберігати токен доступу, який ви щойно скопіювали. Якщо ви працюєте на ОС Windows: Панель керування -> Система -> Додаткові параметри системи -> Змінні середовища -> Змінні середовища користувача -> Створити. Ім'я змінної – "INFLUX_TOKEN", значення змінної – скопійований токен.
+- [ ] У операційній системі вашого ПК створіть змінну середовища `INFLUX_TOKEN`, яка буде зберігати токен доступу, який ви щойно скопіювали. Якщо ви працюєте на ОС Windows: Панель керування -> Система -> Додаткові параметри системи -> Змінні середовища -> Змінні середовища користувача -> Створити. Ім'я змінної – "INFLUX_TOKEN", значення змінної – скопійований токен.
 
 
 ![](6_1media/10.png) 
@@ -145,10 +162,16 @@ Expand-Archive .\telegraf-1.22.1_windows_amd64.zip -DestinationPath 'C:\Program 
 
 Змінювати інтервал не потрібно, залиште конфігураційний файл без змін, натиснувши кнопку **Cancel**.
 
-- [ ] Перейдіть в директорію, де зберігається telegraf – `C:\Program Files\InfluxData\telegraf\telegraf-1.22.1`. Запустіть з папки командний рядок, прописавши в шлях провідника "cmd". В командному рядку виконайте команду для запуску телеграфу, скопійовану у попередньому пункті. 
+- [ ] Перейдіть в директорію, де зберігається telegraf – `C:\Program Files\InfluxData\telegraf\telegraf-1.22.1`. Запустіть з папки командний рядок, прописавши в шлях провідника "cmd". В командному рядку виконайте команду для запуску телеграфу, скопійовану у попередньому пункті.  Повинно 
 
 
 ![](6_1media/9.gif) 
+
+Серед повідомлень у вас зявиться попередження, на яке не потрібно звертати увагу:
+
+```
+W! [inputs.opcua] Failed to load certificate: open /etc/telegraf/cert.pem: The system cannot find the path specified.
+```
 
 
 
@@ -165,7 +188,7 @@ Expand-Archive .\telegraf-1.22.1_windows_amd64.zip -DestinationPath 'C:\Program 
 #### 5.1. Основи роботи з вибіркою даних. Data Explorer
 Data Explorer в інтерфейсі користувача InfluxDB дозволяє створювати, виконувати та візуалізувати запити Flux. **Query Builder** (конструктор запитів) дозволяє створювати Flux запити без написання коду на мові Flux, а **Script Editor** (редактор скриптів) – це редактор коду Flux, де можна вручну редагувати запит. При переході на сторінку Data Explorer, за замовчуванням завантажується Конструктор запитів.
 
-- [ ] Відкрийте пункт меню "Data Explorer" в інтерфейсі користувача InfluxDB. За допомогою Конструктора запитів побудуйте запит зчитування значень температур за останні 15 хвилин трьох довільних кондиціонерів:
+- [ ] У інтерфейсі користувача хмарного сервісу InfluxDB відкрийте пункт меню "Data Explorer". За допомогою Конструктора запитів побудуйте запит зчитування значень температур за останні 15 хвилин трьох довільних кондиціонерів:
   1. В розділі From оберіть бакет, в який пишуться дані.
   2. В наступному розділі "Filter" (автоматично обрано тег "\_measurement" ) оберіть вимірювання **Building**.
   3. В наступному "Filter" (автоматично обрано тег "\_field" ) оберіть поле **Temperature**.
@@ -180,7 +203,7 @@ Data Explorer в інтерфейсі користувача InfluxDB дозво
 
 ![](6_1media/10.gif)
 
-- [ ] Змініть період та [функцію агрегування](https://docs.influxdata.com/flux/v0.x/function-types/#aggregates) значень: у віконці "Window period" оберіть `Custom` та виставте `30s`;  у віконці "Aggregate functions" оберіть `Custom` та виставте функцію `min`. Проекспериментуйте з різними функціями агрегування.
+- [ ] Змініть період та [функцію агрегування](https://docs.influxdata.com/flux/v0.x/function-types/#aggregates) значень: у віконці "Window period" оберіть `Custom` та виставте `30s`;  у віконці "Aggregate functions" оберіть `Custom` та виставте функцію `min`. Після цього натисніть `Submit` щоб подивитися на результати. Проекспериментуйте з різними функціями агрегування.
 
 
 ![](6_1media/12.png) 
@@ -191,12 +214,14 @@ Data Explorer в інтерфейсі користувача InfluxDB дозво
 
 ![](6_1media/13.png) 
 
-- [ ] Перейти назад у конструктор запитів можна, натиснувши кнопку **Query Builder**.
-- [ ] Швидко переглянути дані у табличному вигляді дозволяє опція **View Raw Data**.
+- [ ] Перейдіть назад у конструктор запитів, натиснувши кнопку **Query Builder**.
+- [ ] Перегляньте дані у табличному вигляді вибравши опцію **View Raw Data**. Після чого поверніться в режим відключено опції. 
 - [ ] Data Explorer надає різні [типи візуалізації даних](https://docs.influxdata.com/influxdb/cloud/visualize-data/visualization-types/). Перегляньте наявні візуалізації (Data Explorer –> випадальний список у верхньому лівому куті) та їх налаштування (кнопка **Customize**) .
 ![](6_1media/27.png) 
 
 #### 5.2. Налаштування дашбоардів (інформаційних панелей)
+
+Дашбоарди - інформаційні пенелі дають можливість надати наперед сконфігуровані панелі перегляду для користувача.   
 
 - [ ] Створіть новий Dashboard з назвою "Building":
   1. У навігаційному меню ліворуч виберіть **Dashboards**.
@@ -210,25 +235,23 @@ Data Explorer в інтерфейсі користувача InfluxDB дозво
 
 - [ ] Додайте нову комірку з лінійним трендом "Humidity" для першого кондиціонера. Для цього натисніть **Add Cell**, щоб відкрити Data Explorer і налаштувати нову комірку для інформаційної панелі.
 
-- [ ] Побудуйте запит на читання значень "Humidity" одного кондиціонера "AirConditioner_1" за останні 15 хвилин, не застосовуючи функцію агрегування.
+- [ ] Побудуйте запит на читання значень "Humidity" одного кондиціонера "AirConditioner_1" за останні 15 хвилин, не застосовуючи функцію агрегування. Натисніть `Submit`.
 
 
    ![](6_1media/15.png) 
 
-- [ ] Налаштуйте відображення тренду: 
+- [ ] Використовуючи кнопку `Customize` налаштуйте відображення тренду : 
   1. Згладжування тренду (опція Interpolation -> Smooth)
   1. Заповнення простору під лінією, (опція "Shade Area Below Lines").
-  1. Назва осі Y `Humidity`.
+  1. Назва осі Y (Y axis label) `Humidity`.
   1. Одиниці вимірювання `%` на осі Y (опція "Y Axis Suffix").
-  1. Статичне відображення легенди (опція "Display Static Legend").
+  1. Статичне відображення легенди (опція "Display Static Legend" - виставити Show).
 
 ![](6_1media/12.gif)
 
-- [ ] Дайте назву комірці – `Humidity`. Збережіть налаштування комірки.
-
-  1. Введіть назву комірки в поле **Name this cell** у верхньому лівому куті.
-  2. Для збереження натисніть "Галочку" у верхньому правому куті.
-     ![](6_1media/16.png) 
+- [ ] Дайте назву комірці –  `Humidity`, вписавши її у полі `Name this cell` у лівому верхньому кутку.
+- [ ] Збережіть налаштування комірки, натиснувши "Галочку" у верхньому правому куті.
+![](6_1media/16.png) 
 - [ ] Розтягніть комірку у всю ширину сторінки.
 
 ![](6_1media/13.gif)
@@ -238,24 +261,24 @@ Data Explorer в інтерфейсі користувача InfluxDB дозво
 
 ![](6_1media/19.png) 
 
-- [ ] Налаштуйте автоматичне оновлення  Dashboard кожні 30 секунд (опція "Set Auto Refresh").
+- [ ] Налаштуйте автоматичне оновлення  Dashboard кожні 30 секунд (опція "Set Auto Refresh"). Після чого натисніть `Confirm` 
 
 ![](6_1media/17.png) 
 
 ![](6_1media/18.png) 
 
-- [ ] Створіть змінну з назвою `device` (Dashboard Variable) для зміни конкретних компонентів запитів без необхідності редагування запитів. Ця змінна буде повертати всі значення тегу device, тобто "AirConditioner_1", "AirConditioner_2", "AirConditioner_3" і т.д. 
+- [ ] Використовуючи інструкції нижче створіть змінну (Dashboard Variable) з назвою `device`  для зміни конкретних компонентів запитів без необхідності редагування запитів. Ця змінна буде повертати всі значення тегу device, тобто "AirConditioner_1", "AirConditioner_2", "AirConditioner_3" і т.д. 
   1. Відкрийте Data Explorer. 
   1. Перейдіть в Script Editor і в редакторі скриптів вставте наступний запит на мові Flux:
 
-```flux
+```js
 import "influxdata/influxdb/v1"
 v1.tagValues(bucket: "firstbucket", tag: "device", predicate: (r) => true, start: -30d)
 ```
 
 ![](6_1media/14.gif)
 
-  3. Збережіть запит як змінну з назвою `device` та типом query. 
+  3. Збережіть запит (`Save As`) як змінну (`Variable`) з назвою `device` та типом `query`. 
 
 ![](6_1media/15.gif)
 
@@ -271,9 +294,9 @@ v1.tagValues(bucket: "firstbucket", tag: "device", predicate: (r) => true, start
 
    ![](6_1media/20.png)
 
-  4. У редакторі скриптів "AirConditioner_1" замініть на v.device.
+  4. У редакторі скриптів `"AirConditioner_1"` (разом з лапками) замініть на `v.device` і натисніть `Submit`.
 
-  5. Збережіть зміни.
+  5. Збережіть зміни (галочка).
 
 ![](6_1media/16.gif)
 
@@ -281,7 +304,7 @@ v1.tagValues(bucket: "firstbucket", tag: "device", predicate: (r) => true, start
 
 ![](6_1media/21.png)
 
-- [ ] **Самостійно!** Створіть ще одну аналогічну комірку з назвою "Temperature" для відображення тренду температури кондиціонерів.
+- [ ] **Самостійно!** Створіть ще одну аналогічну комірку з назвою "Temperature" для відображення тренду температури кондиціонерів. Можете це зробити з використанням клонування (в налаштуваннях комірки є така команда)
 
 - [ ] Створіть комірку з назвою `Current Humidity` типу "Gauge" для відображення поточного значення вологості. Код запиту:
 ```flux
