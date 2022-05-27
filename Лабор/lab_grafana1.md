@@ -30,9 +30,9 @@
 
 #### 2.1. Генерація API токена для доступу до бакету "firstbucket" в Influxdb з Grafana
 
-- [ ] В Influxdb UI перейдіть в розділ `API TOKENS`: пункт меню **Load Data** -> **API Tokens**.
+- [ ] В Influxdb UI (<https://cloud2.influxdata.com/signup>) перейдіть в розділ `API TOKENS`: пункт меню **Load Data** -> **API Tokens**.
 - [ ] Натисніть **+ Generate API Token** у верхньому правому куті, оберіть опцію **Custom API Token**.
-- [ ] У вікні "Generate a custom API token" в поле description вставте `Access to firstbucket from Grafana`. В розділі **Resourses** для firstbucket оберіть опції читання та запису.
+- [ ] У вікні "Generate a custom API token" в поле description вставте `Access to firstbucket from Grafana`. В розділі **Resourses** для firstbucket оберіть опції читання та запису. 
 
 ![](7_1media/4.png)
 
@@ -56,7 +56,7 @@
 - [ ] В розділі **Data sources** натисніть `Add data source`.
 - [ ] В якості джерела даних оберіть `InfluxDB`.
 - [ ] В налаштуваннях джерела даних InfluxDB поле **Name** залиште без змін, тобто `InfluxDB`.
-- [ ] Опцію **Default **біля поля **Name** активуйте.
+- [ ] Активуйте опцію **Default **біля поля **Name** .
 - [ ] Для опції **Query Language** оберіть мову `Flux`.
 
  ![](7_1media/2.gif)
@@ -149,7 +149,7 @@ from(bucket: "firstbucket")
 Рис.10. Редагування панелі
 
 - [ ] Розтягніть панель на всю ширину екрана (дашбоарду).
-- [ ] Збережіть зміни дашбоарду, залишивши виставлений часовий діапазон як діапазон дашбоарду за замовчуванням (дискета у правому верхньому куті дашбоарду).
+- [ ] Збережіть зміни дашбоарду (дискета у правому верхньому куті дашбоарду), виставте опцію `Save current time range as dashboard default` (залишити виставлений часовий діапазон як діапазон дашбоарду за замовчуванням).
 
 ![](7_1media/4.gif)
 
@@ -172,13 +172,13 @@ from(bucket: "firstbucket")
 - Legend -> Legend mode: `Table`
 - Legend -> Legend placement: `Right`
 - Legend -> Legend values: `Last`
-- Graph styles -> Line interpolation: `Smooth`
+- Graph styles ->Style:`Line`, Line interpolation: `Smooth`
 - Graph styles -> Point size: `3`
 - Axis -> Placement: `Left`
 - Axis -> Label: `Temperature`
 - Standard options -> Unit: `Celsium (°C)`
 - Standard options -> Decimals: `2`
-- Thresholds -> `72: red`
+- Thresholds -> колір - `red` , значення `72 `
 - Thresholds -> Show thresholds: `As lines`
 
 - [ ] Встановіть налаштування на вкладці `Overrides`: назва трендів замість "Temperature AirConditioner_1, ... , Temperature AirConditioner_10" – `Air Conditioner1, ... , Air Conditioner 10` відповідно. Для цього:
@@ -208,13 +208,13 @@ from(bucket: "firstbucket")
 
 #### 3.5. Налаштування посилань дашбоарду
 
-- [ ] Скопіюйте посилання на дашбоард "Building" в Influxdb UI.
+- [ ] Скопіюйте посилання на дашбоард "Building" в Influxdb UI. Для цього перейдіть в Influxdb UI на потрібний dashboard, і скопіюйте посилання з рядку url. 
 
 ![](7_1media/7.gif)
 
 Запис.7. Посилання на дашбоард в Influxdb UI
 
-- [ ] Відкрийте налаштування дашбоарду (шестерня в верхньому правому кутку дашбоарду).
+- [ ] У Grafana відкрийте налаштування створеного дашбоарду (шестерня в верхньому правому кутку дашбоарду).
 
 ![](7_1media/14.png)
 
@@ -301,7 +301,7 @@ v1.tagValues(bucket: "firstbucket", tag: "device", predicate: (r) => true, start
 Рис.17. Налаштування змінної дашбоарду
 
 - [ ] Поверніться до редагування панелі `Temperature`.
-- [ ] Замініть фрагмент запиту:
+- [ ] Замініть фрагмент запиту з `filter(fn: (r) => r["device"]`, який наведений нижче 
 
 ```js
 |> filter(fn: (r) => r["device"] == "AirConditioner_1" or r["device"] == "AirConditioner_10" or r["device"] == "AirConditioner_2" or r["device"] == "AirConditioner_3" or r["device"] == "AirConditioner_4" or r["device"] == "AirConditioner_5" or r["device"] == "AirConditioner_6" or r["device"] == "AirConditioner_7" or r["device"] == "AirConditioner_8" or r["device"] == "AirConditioner_9")
@@ -328,8 +328,8 @@ v1.tagValues(bucket: "firstbucket", tag: "device", predicate: (r) => true, start
 
 - [ ] Додайте нову інформаційну панель в дашбоард **Main**. Для цього натисніть `+` (Add Panel) у верхньому правому куті дашбоарду.
 - [ ] Натисніть `Add a new panel`.
-- [ ] Оберіть візуалізацію `Stat`.
-- [ ] Вставте запит з панелі `Temperature`.
+- [ ] Замість `Time Series` оберіть візуалізацію `Stat`.
+- [ ] Вставте скопійований запит з панелі `Temperature`.
 
 - [ ] Для панелі встановіть наступні налаштування на вкладці `All`:
 
@@ -549,13 +549,17 @@ v1.tagValues(bucket: "firstbucket", tag: "device", predicate: (r) => true, start
 
 #### 4.2. Створення дашбоарду `Events`
 
-- [ ] Скопіюйте URL дашбоарду `Main`.
+- [ ] У дашбоарді `Main` виберіть кондиціонери 1, 10 та 2. 
+- [ ] Скопіюйте URL дашбоарду `Main`  в блокнот, він знадобиться далі.
 
 ![](7_1media/23.png)
 
 Рис.20. Посилання на дашбоард Main
 
-- [ ] Зверніть увагу, що посилання містить назви змінних/змінної активної для дашбоарду.
+- [ ] Зверніть увагу, що посилання містить назви змінних/змінної активної для дашбоарду, а саме:
+
+`&var-device=AirConditioner_1&var-device=AirConditioner_10&var-device=AirConditioner_2`
+
 - [ ] В папці `Lab7` створіть дашбоард з назвою `Events`. 
 
 ![](7_1media/9.gif)
@@ -588,7 +592,7 @@ from(bucket: "firstbucket")
   - [ ] Натисніть `+Add override property`.
   - [ ] Оберіть опцію `Data Links -> data links`.
   - [ ] Натисніть `Add link`.
-  - [ ] У поле URL вставте посилання на дашбоард **`Main`** , змінене наступним чином:
+  - [ ] У поле URL вставте посилання на дашбоард **`Main`** , який був скопійований в блокнот, змінивши налаштування device, тобто:
 
   **з**
 
@@ -613,8 +617,8 @@ from(bucket: "firstbucket")
 
 - [ ] Застосуйте зміни для панелі та збережіть дашбоард.
 - [ ] Розтягніть панель на всю сторінку. 
-- [ ] За допомогою OPC UA клієнта `UA Expert`, викличте методи для зміни станів кількох кондиціонерів.
-- [ ] Вручну оновіть дашбоард `Events` та перегляньте результат.
+- [ ] За допомогою OPC UA клієнта `UA Expert`, викличте метод  `Stop` для зміни станів кількох кондиціонерів. Вручну оновіть дашбоард `Events` та перегляньте результат.
+- [ ] Викличте методи`Start` для тих же кондиціонерів. Перегляньте результат в дашбоарді. 
 
 ![](7_1media/10.gif)
 
@@ -631,11 +635,11 @@ from(bucket: "firstbucket")
 
 Анотації дозволяють робити помітки на графіку з прив'язкою до часу, щоб забезпечити контекст.
 
-- [ ] По панелі Time series дашбоарду `Main` зробіть клік лівою кнопкою миші (по графіку).
+- [ ] Відкрийте панель дашбоард `Main` зробіть клік лівою кнопкою миші по графіку на панелі типу Time series .
 - [ ] Натисніть `Add annotation`.
 - [ ] В поле description напишіть `test annotation`.
 - [ ] Натисніть `Save`.
-- [ ] Зверніть увагу на результат.
+- [ ] Зверніть увагу на результат - відобразиться вертикальна пунктирна лінія. При наведенні мишки на нижню частину буде відображена анотація.
 
 ![](7_1media/12.gif)
 
@@ -644,7 +648,7 @@ from(bucket: "firstbucket")
 #### 5.2. Створення автоматичних анотацій з прив'язкою до подій з журналу подій
 
 - [ ] Відкрийте налаштування дашбоарду `Main` (шестерня в верхньому правому кутку дашбоарду).
-- [ ] Перейдіть до пункту `Annotations`.
+- [ ] У лівому меню перейдіть до пункту `Annotations`.
 - [ ] Натисніть кнопку `Add annotation query`.
 - [ ] Налаштуйте анотацію наступним чином:
 
@@ -688,8 +692,10 @@ from(bucket: "firstbucket")
 - [ ] Перейдіть до пункту `Preferences`.
 - [ ] Змініть поле **Home dashboard** на `Lab7/ Main`.
 - [ ] Натисніть `Save`.
-
 - [ ] Перевірте дане налаштування, перейшовши на сторінку `Home` Grafana. (Бокове меню Dashboards -> Home)
+
+### 7.Повноекранний режим
+
 - [ ] Для переходу в режим повноекранного переглядання дашбоарду, два рази натисніть `Cycle view mode` у верхньому правому кутку дашбоарду.
 
 ![](7_1media/26.png)
