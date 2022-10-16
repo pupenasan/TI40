@@ -415,7 +415,7 @@ Node-RED, як правило використовується або на ст�
 
 ###### 5.2. Завантажити Modbus PLC Simulator (Mod_RSsim) 
 
-- завантажте [Mod_RSsim2](https://sourceforge.net/projects/modrssim2/)
+- завантажте [Mod_RSsim2](https://sourceforge.net/projects/modrssim2/), перед завантаженням треба буде трохи почекати
 
 ###### 5.3. Запуск на виконання Modbus PLC Simulator 
 
