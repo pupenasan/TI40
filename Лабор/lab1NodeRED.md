@@ -415,12 +415,11 @@ Node-RED, як правило використовується або на ст�
 
 ###### 5.2. Завантажити Modbus PLC Simulator (Mod_RSsim) 
 
-- завантажте та встановіть [дистрибутив](http://www.plcsimulator.org/downloads/SimSetup.msi?attredirects=0)
-- завантажте [файл для правки реєстру з ключем](http://www.plcsimulator.org/downloads/Vista_key.reg?attredirects=0) та запустіть його на виконання
+- завантажте [Mod_RSsim2](https://sourceforge.net/projects/modrssim2/)
 
 ###### 5.3. Запуск на виконання Modbus PLC Simulator 
 
-- Запустіть на виконання Modbus PLC Simulator C:\Program Files (x86)\EmbeddedIntelligence\Mod_RSsim
+- Запустіть на виконання Modbus PLC Simulator з того місця, куди Ви його завантажили
 - Виставте значення в Prot: Modbus TCP
 
 ![](NodeRedMedia/38.png) 
