@@ -177,7 +177,7 @@
 - JSON Web Token (JWT) - у форматі JSON
 - Security Assertion Markup Language (SAML) - в XML-форматі
 
-### Стандарты OAuth и OpenID Connect
+### Стандарти OAuth и OpenID Connect
 
 Стандарт **OAuth** (Open Authorization) означує механізм отримання доступу одного застосунку до іншого від імені користувача без необхідності вводу імені користувача та паролю. 
 
