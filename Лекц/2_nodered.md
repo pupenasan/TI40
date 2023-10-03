@@ -387,3 +387,7 @@ let foo = env.get("FOO");
 | [<- до лекцій](README.md) | [на основну сторінку курсу](../README.md) |
 | ------------------------- | ----------------------------------------- |
 |                           |                                           |
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aTETGAcrfEw?si=B_c7SdHmk7h2vuV3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tJ8HRjkckn8?si=1LwuRHAN4g8b2qYP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

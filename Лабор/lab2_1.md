@@ -1,4 +1,4 @@
-**Технології індустрії 4.0. Лабораторний практикум. ** Автор і лектор: Олександр Пупена 
+**Технології індустрії 4.0. Лабораторний практикум.** Автор і лектор: Олександр Пупена 
 
 | [<- до лаборних робіт](README.md) | [на основну сторінку курсу](../README.md) |
 | --------------------------------- | ----------------------------------------- |
@@ -265,7 +265,7 @@ return msg;
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Z8o4W2agZwQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-### 
+
 
 ## Питання до захисту
 
