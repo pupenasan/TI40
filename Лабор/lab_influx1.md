@@ -230,6 +230,8 @@ Expand-Archive .\telegraf-1.22.1_windows_amd64.zip -DestinationPath 'C:\Program 
 W! [inputs.opcua] Failed to load certificate: open /etc/telegraf/cert.pem: The system cannot find the path specified.
 ```
 
+- [ ] Якщо видає помилку `401` спробуйте перезавантажити комп'ютер і спробувати знову.
+
 ## 5. Основи роботи з вибіркою даних. Data Explorer
 
 Інтерфейс користувача InfluxDB UI це інструмент для роботи з даними часових рядів та InfluxDB. Інтерфейс користувача InfluxDB дозволяє:
