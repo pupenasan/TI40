@@ -15,7 +15,7 @@
 
 - [ ] на локальному ПК запустіть Node-RED
 - [ ] створіть новий проект
-- [ ] скачайте [файл експорту потока](https://drive.google.com/file/d/1sG11-TY4EOX3Sk9N1mJyQCGGNj01NExx/view) збору даних та імпортуйте
+- [ ] завантажте [файл експорту потока](https://drive.google.com/file/d/1V41vdF__PnKZTk88bfBRNpPjdDcvZyyW/view?usp=drive_link) збору даних та імпортуйте
 
 ![](media0/1.png)
 
