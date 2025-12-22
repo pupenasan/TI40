@@ -60,7 +60,7 @@
 Налаштування MQTT Broker
 
 ```js
-let cond = global.get ("RTDB.ns=3;s=AirConditioner_1");
+let cond = global.get ("RTDB.ns=4;s=AirConditioner_1");
 let ob = {};
 //https://ubidots.com/docs/hw/#introduction
 for (const tag in cond){
@@ -117,7 +117,15 @@ return msg;
 
 - [ ] Додайте фрагмент програми з підпискою на зміну завдання з вологості та температури
 
-![](media0/36.png)
+![image-20251222141526546](media0/image-20251222141526546.png)
+
+![image-20251222141416408](media0/image-20251222141416408.png)
+
+![image-20251222141438822](media0/image-20251222141438822.png)
+
+![image-20251222141557501](media0/image-20251222141557501.png)
+
+
 
 ### 10. Додавання віджетів для зміни завдання
 
