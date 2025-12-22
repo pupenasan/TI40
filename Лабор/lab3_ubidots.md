@@ -42,11 +42,22 @@
 ### 5.Створення програми в Node-RED для відправки даних
 
 - [ ] На локальному ПК запустіть Node-RED, якщо він не запущений
-- [ ] Встановіть бібліотеку [ubidots-nodered](https://flows.nodered.org/node/ubidots-nodered) після чого перезапустіть Node-RED
 - [ ] Створіть потік з ім'ям "ubidots"
-- [ ] Реалізуйте в потоці наведену нижче програму, зверніть увагу, що в полі `Token` потрібно вставити скопійований з однойменного поля в Devices. Оновлення поставте раз/хвилину, при частому оновленні швидко закінчиться денний ліміт точок. Обмеження безкоштовної ліцензії описано [тут](https://help.ubidots.com/en/articles/639806-what-is-the-difference-between-ubidots-and-ubidots-stem)    
+- [ ] Реалізуйте в потоці наведену нижче програму, де:
+  - зміст `function` вказаний в наведеному нижче лістингу
+  - Server для брокерf `industrial.api.ubidots.com` 
+  - у полі `username` вкладки `security` для MQTT broker потрібно вставити скопійований з поля  `Token`  в Devices. 
+  - оновлення поставте раз/хвилину, при частому оновленні швидко закінчиться денний ліміт точок. Обмеження безкоштовної ліцензії описано [тут](https://help.ubidots.com/en/articles/639806-what-is-the-difference-between-ubidots-and-ubidots-stem)    
 
- ![](media0/31.png)  
+![image-20251222123805735](media0/image-20251222123805735.png)
+
+   ![image-20251222123859339](media0/image-20251222123859339.png)
+
+Налаштування підлкючення MQTT Broker
+
+![image-20251222123929389](media0/image-20251222123929389.png)
+
+Налаштування MQTT Broker
 
 ```js
 let cond = global.get ("RTDB.ns=3;s=AirConditioner_1");
